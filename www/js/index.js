@@ -1,5 +1,5 @@
 
-// Step Six
+// 16008021
 
 // NEED TO REFRENCE THIS https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation
 // NEED TO REFRENCE THIS https://mobiforge.com/design-development/html5-mobile-web-canvas
@@ -152,6 +152,12 @@ window.onload = function() {
 		body.drawImage(wallAssets[wallType[loop]],wallPositionX[loop],wallPositionY[loop],canvas.width/20,canvas.height/10);
 	}
 	
+	// CODE from SWEETALERT. "Sweetalert". T4t5.github.io. N.p., 2017. Web. 09 Apr. 2018.
+	swal({
+		title: "How to Play",
+		text: "Tilt your phone to control the Red Ball. Guide the Red Ball to the Yellow Goal. Avoid the Blue Holes otherwise you end up where you started. Beware of the Purple Ball who is just as Evil. Tilt, Touch and Shake your Phone to Control the special type of Walls allowing you to change the maze to benefit you. Good Luck!",
+	});
+	// End of Code.
 	
 	// Setting Intervals
 	renderTime = 1;
@@ -389,7 +395,22 @@ function render() {
 		// Check to see if Player wins
 		if ( (playerPositionX[1] < playerPositionX[0] + canvas.width/30 && playerPositionX[1] > playerPositionX[0] - canvas.width/30) && (playerPositionY[1] < playerPositionY[0] + canvas.height/15 && playerPositionY[1] > playerPositionY[0] - canvas.height/15) ) {
 			pause = true;
-			restart();
+			
+			
+			// CODE from SWEETALERT. "Sweetalert". T4t5.github.io. N.p., 2017. Web. 09 Apr. 2018.
+			swal({
+				title: "YOU WIN",
+				text: "Your Time was " + time + "<br>",
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Restart Game",
+				closeOnConfirm: false
+			},
+			function(){
+				location.reload(); 
+			});
+			// End of code
+			
+			
 		}
 		
 		
