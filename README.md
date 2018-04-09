@@ -2,9 +2,11 @@
 # This Application is only available on Android.
 
 
-# Steps to Add New Application to Phonegap;
-# 1.
-
+# Steps to Add New Application to Phonegap using GitHub;
+# 1. Create or Add the repository
+# 2. Upload Application to Git hub Site.
+# 3. Add the New Application onto Phonegap Build.
+# 4. Build the Application.
 
 
 
