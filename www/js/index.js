@@ -121,7 +121,7 @@ window.onload = function() {
 	wallAccelerationX = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,0,0];
 	wallAccelerationY = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,0,0];
 	wallAccelerationZ = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,0,0];
-	pause = false;
+	pause = true;
 	limit = 0;
 	limitTwo = 0;
 	switcher = 1;
@@ -152,12 +152,20 @@ window.onload = function() {
 		body.drawImage(wallAssets[wallType[loop]],wallPositionX[loop],wallPositionY[loop],canvas.width/20,canvas.height/10);
 	}
 	
+	
 	// CODE from SWEETALERT. "Sweetalert". T4t5.github.io. N.p., 2017. Web. 09 Apr. 2018.
 	swal({
 		title: "How to Play",
 		text: "Tilt your phone to control the Red Ball. Guide the Red Ball to the Yellow Goal. Avoid the Blue Holes otherwise you end up where you started. Beware of the Purple Ball who is just as Evil. Tilt, Touch and Shake your Phone to Control the special type of Walls allowing you to change the maze to benefit you. Good Luck!",
+		confirmButtonColor: "#0b8e42",
+		confirmButtonText: "Start Game",
+		closeOnConfirm: true
+	},
+	function(){
+		pause = false;
 	});
 	// End of Code.
+	
 	
 	// Setting Intervals
 	renderTime = 1;
@@ -401,7 +409,7 @@ function render() {
 			swal({
 				title: "YOU WIN",
 				text: "Your Time was " + time + "<br>",
-				confirmButtonColor: "#DD6B55",
+				confirmButtonColor: "#0b8e42",
 				confirmButtonText: "Restart Game",
 				closeOnConfirm: false
 			},
