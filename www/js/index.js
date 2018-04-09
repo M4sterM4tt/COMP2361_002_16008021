@@ -67,6 +67,8 @@ var loop;
 var loopTwo;
 var loopThree;
 var loopFour;
+var rating;
+var ratingSwitch;
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------	1
 
@@ -130,7 +132,8 @@ window.onload = function() {
 	breaker = 1;
 	touch = 0;
 	time = 0;
-	
+	rating = 5;
+	ratingSwitch = [25,20,15,10]
 	
 	// Add Base and Player
 	body.beginPath();	
@@ -404,11 +407,16 @@ function render() {
 		if ( (playerPositionX[1] < playerPositionX[0] + canvas.width/30 && playerPositionX[1] > playerPositionX[0] - canvas.width/30) && (playerPositionY[1] < playerPositionY[0] + canvas.height/15 && playerPositionY[1] > playerPositionY[0] - canvas.height/15) ) {
 			pause = true;
 			
+			for (loop = 0; loop < ratingSwitch.length; loop+=1) {
+				if (ratingSwitch[loop] < time) {
+					rating = loop + 1
+				}
+			}
 			
 			// CODE from SWEETALERT. "Sweetalert". T4t5.github.io. N.p., 2017. Web. 09 Apr. 2018.
 			swal({
 				title: "YOU WIN",
-				text: "Your Time was " + time.toFixed(2),
+				text: "Your Time was " + time.toFixed(2) + ". Your Rating is " + rating,
 				confirmButtonColor: "#0b8e42",
 				confirmButtonText: "Restart Game",
 				closeOnConfirm: false
