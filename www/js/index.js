@@ -232,8 +232,8 @@ function render() {
 	
 	if (pause == false) {
 
-		time = (Number(time) + Number(renderTime/200)).toFixed(4);
-		document.getElementById('time').innerHTML = "Time: " + time;
+		time = (Number(time) + Number(renderTime/200));
+		document.getElementById('time').innerHTML = "Time: " + time.toFixed(2);
 
 
 		// Motion Function
@@ -408,7 +408,7 @@ function render() {
 			// CODE from SWEETALERT. "Sweetalert". T4t5.github.io. N.p., 2017. Web. 09 Apr. 2018.
 			swal({
 				title: "YOU WIN",
-				text: "Your Time was " + time + "<br>",
+				text: "Your Time was " + time.toFixed(2),
 				confirmButtonColor: "#0b8e42",
 				confirmButtonText: "Restart Game",
 				closeOnConfirm: false
