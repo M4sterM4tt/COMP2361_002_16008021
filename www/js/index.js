@@ -416,7 +416,7 @@ function render() {
 			// CODE from SWEETALERT. "Sweetalert". T4t5.github.io. N.p., 2017. Web. 09 Apr. 2018.
 			swal({
 				title: "YOU WIN",
-				text: "Your Time was " + time.toFixed(2) + ". Your Rating is " + rating,
+				text: "Your Time was " + time.toFixed(2) + ". Overall Rating: " + rating + "/5",
 				confirmButtonColor: "#0b8e42",
 				confirmButtonText: "Restart Game",
 				closeOnConfirm: false
