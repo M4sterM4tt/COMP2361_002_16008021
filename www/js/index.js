@@ -174,6 +174,7 @@ window.onload = function() {
 		closeOnConfirm: true // The Alert disappears when the confirm button is pressed.
 	},
 	function(){
+		window.location = "#pageone"; // Goes to Page one.
 		pause = false; // Unpause.
 	});
 	// End of Code.
