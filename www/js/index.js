@@ -439,17 +439,17 @@ function render() {
 			
 			// CODE from SWEETALERT. "Sweetalert". T4t5.github.io. N.p., 2017. Web. 09 Apr. 2018.
 			swal({
-				title: "YOU WIN",
-				text: "Your Time was " + time.toFixed(2) + ". Overall Rating: " + rating + "/5",
-				confirmButtonColor: "#0b8e42",
-				confirmButtonText: "Restart Game",
-				closeOnConfirm: false
+				title: "YOU WIN", // Title of Alert Box.
+				text: "Your Time was " + time.toFixed(2) + ". Overall Rating: " + rating + "/5", // Main Text of Alert Box.
+				confirmButtonColor: "#0b8e42", // Colour of Confirm Button.
+				confirmButtonText: "Restart Game", // Text within Confirm Button
+				closeOnConfirm: false // The Alert disappears when the confirm button is pressed.
 			},
 			function(){
-				location.reload(); 
+				location.reload(); // Reloads page
 			});
 			// End of code
-			
+
 			
 		}
 		

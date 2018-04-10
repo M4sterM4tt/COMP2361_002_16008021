@@ -10,17 +10,11 @@ canvas {
 	margin: 0%;
 	padding: 0%;
 	position: absolute;
-    left: 1%;
-    top: 0%;
-	color: black;
 }
 
 .pause {
 	width: 0%;
 	margin: 0%;
 	padding: 0%;
-	position: absolute;
-    right: 1%;
-    top: 0%;
-	color: black;	
+	position: absolute;	
 }
