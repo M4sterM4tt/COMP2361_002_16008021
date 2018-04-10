@@ -1,33 +1,32 @@
 
-// 16008021
 
-// NEED TO REFRENCE THIS https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation
-// NEED TO REFRENCE THIS https://mobiforge.com/design-development/html5-mobile-web-canvas
-// NEED TO REFRENCE THIS https://developer.mozilla.org/en-US/docs/Web/API/CSS_Object_Model/Managing_screen_orientation
-// NEED TO REFRENCE THIS https://www.w3schools.com/tags/ref_eventattributes.asp
-// NEED TO REFRENCE THIS http://bencentra.com/code/2014/12/05/html5-canvas-touch-events.html
-// NEED TO REFRENCE THIS https://cordova.apache.org/docs/en/latest/cordova/events/events.html
-// NEED TO REFRENCE THIS http://demos.jquerymobile.com/1.4.5/pages/
-// NEED TO REFRENCE THIS https://stackoverflow.com/questions/12280351/how-to-navigate-one-page-to-another-page-in-android-phonegap
+// COMP2361 Mobile Application Development: Application Report
+// Student Number: 16008021.
+// Submission Date: Tuesday 8th May 2018.
+// Assignment Number: Assignment 2.
+// Assignment Title: COMP2361 Mobile Application Development.
+
+
+
 
 // Canvas Variables 
-var canvas; 
-var body;
+var canvas; // Variable for the Canvas.
+var body; // Variable for the Body.
 
 
 // Image Variables
-var level; 
-var otherAssets;
-var wallAssets;
+var level; // Array which will hold the level templates.
+var mainAssets; // Array which holds the Balls, Holes and Goal.
+var wallAssets; // Array which holds the Walls.
 
 
 // Player Variables
-var playerPositionX;
-var playerPositionY;
-var playerVelocityX;
-var playerVelocityY;
-var playerAccelerationX;
-var playerAccelerationY;
+var playerPositionX; // Array which holds X Position of Goal and Player.
+var playerPositionY; // Array which holds Y Position of Goal and Player.
+var playerVelocityX; // Variable which holds X Velocity of Player.
+var playerVelocityY; // Variable which holds Y Velocity of Player.
+var playerAccelerationX; // Variable which holds X Acceleration of Player.
+var playerAccelerationY; // Variable which holds Y Acceleration of Player.
 
 
 // Enemy Variables
@@ -52,31 +51,36 @@ var wallAccelerationY;
 var wallAccelerationZ;
 
 
-// Other Variables
-var pause;
-var renderTime;
-var limit;
-var limitTwo;
-var switcher;
-var previous;
-var previousTwo;
-var breaker;
-var touch;
-var time;
+// Loop Variables
 var loop;
 var loopTwo;
 var loopThree;
 var loopFour;
+
+
+// Other Variables
+var pause;
+var limit;
+var limitTwo;
+var previous;
+var previousTwo;
+var switcher;
+var breaker;
+var touch;
+var time;
 var rating;
 var ratingSwitch;
+var renderTime;
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------------------------	1
+
+
+
+// 1	----------------------------------------------------------------------------------------------------------------------------------------------------------------	1
+
+
 
 
 window.onload = function() {
-	
-	// Events
-	document.addEventListener("deviceready", onDeviceReady, false);
 	
 	
 	// Canvas, Body and Graphics context
@@ -88,23 +92,22 @@ window.onload = function() {
 	
 	// Images and Variables for Images
 	level = document.getElementById("levelBase");
-	otherAssets = [document.getElementById("playerGoal"), document.getElementById("playerBall"), document.getElementById("enemyHole"), document.getElementById("enemyBall")];
+	mainAssets = [document.getElementById("playerGoal"), document.getElementById("playerBall"), document.getElementById("enemyHole"), document.getElementById("enemyBall")];
 	wallAssets = [document.getElementById("wallBase"), document.getElementById("wallArrowShake"), document.getElementById("wallArrowTilt"), document.getElementById("wallArrowTouch"), document.getElementById("wallCloudShake"), document.getElementById("wallCloudTilt"), document.getElementById("wallCloudTouch"), document.getElementById("wallRotatedArrowShake"), document.getElementById("wallRotatedArrowTilt"), document.getElementById("wallRotatedArrowTouch")];
 	
 	
-	// Player Variables
-	playerPositionX = [canvas.width - canvas.width/20,0];
-	playerPositionY = [canvas.height/2,0];
+	// Player Variables: [Goal, Player]
+	playerPositionX = [canvas.width - canvas.width/20,  0];
+	playerPositionY = [canvas.height/2,  0];
 	playerVelocityX = 0;
 	playerVelocityY = 0;
 	playerAccelerationX = 0;
 	playerAccelerationY = 0;
 	
 	
-	// Enemy Variables
-	// Bottom Row, Others.
-	enemyType = [2,2,2,2,3];
-	enemyPositionX = [canvas.width - canvas.width/20,canvas.width/2 - canvas.width/20,0,     canvas.width - 3*canvas.width/20,canvas.width - canvas.width/20];
+	// Enemy Variables: [Bottom Right Hole, Bottom Middle Hole, Bottom Left Hole, Remaining Hole, Enemy Ball]
+	enemyType = [2,2,2,2,3]; 
+	enemyPositionX = [canvas.width - canvas.width/20,  canvas.width/2 - canvas.width/20,  0,  canvas.width - 3*canvas.width/20,  canvas.width - canvas.width/20];
 	enemyPositionY = [canvas.height - canvas.height/10,canvas.height - canvas.height/10,canvas.height - canvas.height/10,     canvas.height/2,0];
 	enemyVelocityX = [0,0,0,0,0];
 	enemyVelocityY = [0,0,0,0,0];
@@ -112,8 +115,7 @@ window.onload = function() {
 	enemyAccelerationY = [0,0,0,0,0];
 
 	
-	// Wall Variables
-	// First Set of Base, Second Set of Base, Third Set of Base, One of each other Wall, Final Set of Base.
+	// Wall Variables: First Set of Base, Second Set of Base, Third Set of Base, One of each Interactive Wall.
 	wallType = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     1,2,3,4,5,6,7,8,9];
 	wallDefaultType = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     1,2,3,4,5,6,7,8,9];
 	wallPositionX = [canvas.width/10,canvas.width/10,canvas.width/10,canvas.width/10,canvas.width/10,canvas.width/10,canvas.width/10,     canvas.width/2,canvas.width/2,canvas.width/2,canvas.width/2,canvas.width/2,canvas.width/2,canvas.width/2,     canvas.width - canvas.width/20,canvas.width - 2*canvas.width/20,canvas.width - 3*canvas.width/20,canvas.width - 4*canvas.width/20,canvas.width - 4*canvas.width/20,canvas.width - 4*canvas.width/20,canvas.width - 4*canvas.width/20,     4*canvas.width/20,4*canvas.width/20,8*canvas.width/20,5*canvas.width/20,canvas.width/2 - canvas.width/20,canvas.width - 4*canvas.width/20,canvas.width/2 + canvas.width/20,canvas.width - 4*canvas.width/20,4*canvas.width/20];
@@ -123,6 +125,9 @@ window.onload = function() {
 	wallAccelerationX = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,0,0];
 	wallAccelerationY = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,0,0];
 	wallAccelerationZ = [0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,     0,0,0,0,0,0,0,0,0];
+	
+	
+	// Other Variables
 	pause = true;
 	limit = 0;
 	limitTwo = 0;
@@ -133,45 +138,52 @@ window.onload = function() {
 	touch = 0;
 	time = 0;
 	rating = 5;
-	ratingSwitch = [25,20,15,10]
+	ratingSwitch = [25,20,15,10];
+	renderTime = 1;
 	
-	// Add Base and Player
-	body.beginPath();	
+	
+	// Adds Level
+	body.beginPath();
 	body.drawImage(level,0,0,canvas.width,canvas.height);
-	body.drawImage(otherAssets[0],playerPositionX[0],playerPositionY[0],canvas.width/20,canvas.height/10);	
-	body.drawImage(otherAssets[1],playerPositionX[1],playerPositionY[1],canvas.width/20,canvas.height/10);
+	
+	
+	// Adds Player and Goal.
+	for(loop = 0; loop < playerPositionX.length; loop+=1) {
+		body.drawImage(mainAssets[loop],playerPositionX[loop],playerPositionY[loop],canvas.width/20,canvas.height/10);	
+	}
 	
 	
 	// Add Enemies
 	for(loop = 0; loop < enemyType.length; loop+=1) {
-		body.beginPath();
-		body.drawImage(otherAssets[enemyType[loop]],enemyPositionX[loop],enemyPositionY[loop],canvas.width/20,canvas.height/10);
+		body.drawImage(mainAssets[enemyType[loop]],enemyPositionX[loop],enemyPositionY[loop],canvas.width/20,canvas.height/10);
 	}
 	
 	
 	// Add Walls
 	for(loop = 0; loop < wallType.length; loop+=1) {
-		body.beginPath();
 		body.drawImage(wallAssets[wallType[loop]],wallPositionX[loop],wallPositionY[loop],canvas.width/20,canvas.height/10);
 	}
 	
 	
 	// CODE from SWEETALERT. "Sweetalert". T4t5.github.io. N.p., 2017. Web. 09 Apr. 2018.
 	swal({
-		title: "How to Play",
-		text: "Tilt your phone to control the Red Ball. Guide the Red Ball to the Yellow Goal. Avoid the Blue Holes otherwise you end up where you started. Beware of the Purple Ball who is just as Evil. Tilt, Touch and Shake your Phone to Control the special type of Walls allowing you to change the maze to benefit you. Good Luck!",
-		confirmButtonColor: "#0b8e42",
-		confirmButtonText: "Start Game",
-		closeOnConfirm: true
+		title: "How to Play", // Title of Alert Box.
+		text: "Tilt your phone to control the Red Ball. Guide the Red Ball to the Yellow Goal. Avoid the Blue Holes mainwise you end up where you started. Beware of the Purple Ball who is just as Evil. Tilt, Touch and Shake your Phone to Control the special type of Walls allowing you to change the maze to benefit you. Good Luck!", // Main Text of Alert Box.
+		confirmButtonColor: "#0b8e42", // Colour of Confirm Button.
+		confirmButtonText: "Start Game", // Text within Confirm Button
+		closeOnConfirm: true // The Alert disappears when the confirm button is pressed.
 	},
 	function(){
-		pause = false;
+		pause = false; // Unpause.
 	});
 	// End of Code.
 	
 	
+	// Events
+	document.addEventListener("deviceready", onDeviceReady, false); // Event which runs the function onDeviceReady() when Device is Ready.
+	
+	
 	// Setting Intervals
-	renderTime = 1;
 	window.setInterval(render,renderTime);
 	render();
 	
@@ -179,10 +191,14 @@ window.onload = function() {
 }
 
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------------------------	2
 
 
-// ready Function
+// 2	----------------------------------------------------------------------------------------------------------------------------------------------------------------	2
+
+
+
+
+// Function which creates the application's Pause, Resume and Menubutton Listeners.
 function onDeviceReady() {
     document.addEventListener("pause", onPause, false);
     document.addEventListener("resume", onResume, false);
@@ -192,41 +208,44 @@ function onDeviceReady() {
 
 // onPause Function
 function onPause() {
-	pause = true;
+	pause = true; // Pause.
 	window.location = "#pagetwo"; // Goes to Page two.
 }
 
 
 // onResume Function
 function onResume() {
-	pause = true;
+	pause = true; // Pause.
 	window.location = "#pagetwo"; // Goes to Page two.
 }
 
 
 // onMenuKeyDown Function
 function onMenuKeyDown() {
-	pause = true;
+	pause = true; // Pause.
 	window.location = "#pagetwo"; // Goes to Page two.
 }
 
 
 // unPause Function
 function unPause() {
-	pause = false;
+	pause = false; // Unpause.
 	window.location = "#pageone"; // Goes to Page one.
 }
 
 
 // restart Function
 function restart() {
-	window.location = "#pageone";
+	window.location = "#pageone"; // Goes to Page one.
 	location.reload(); // Reloads page
 }
 
 
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------------------------	3
+
+// 3	----------------------------------------------------------------------------------------------------------------------------------------------------------------	3
+
+
 
 
 // Main Function
@@ -371,9 +390,13 @@ function render() {
 			}	
 		}
 		
+
+
 		
-	// ----------------------------------------------------------------------------------------------------------------------------------------------------------------	4
+// 4	----------------------------------------------------------------------------------------------------------------------------------------------------------------	4
 		
+
+
 		
 		// Sets Player Velocity and Position
 		playerVelocityX = playerVelocityX + playerAccelerationX;
@@ -501,10 +524,14 @@ function render() {
 			}
 		}	
 		
+	
+
+	
+// 5	----------------------------------------------------------------------------------------------------------------------------------------------------------------	5
 		
-	// ----------------------------------------------------------------------------------------------------------------------------------------------------------------	5
-		
-		
+	
+
+	
 		// Wall Mechanics
 		for(loop = 0; loop < wallType.length; loop+=1) {
 			
@@ -573,15 +600,15 @@ function render() {
 		body.beginPath();
 		body.clearRect(0,0,canvas.width,canvas.height);
 		body.drawImage(level,0,0,canvas.width,canvas.height);
-		body.drawImage(otherAssets[0],playerPositionX[0],playerPositionY[0],canvas.width/20,canvas.height/10);
-		body.drawImage(otherAssets[1],playerPositionX[1],playerPositionY[1],canvas.width/20,canvas.height/10);
+		body.drawImage(mainAssets[0],playerPositionX[0],playerPositionY[0],canvas.width/20,canvas.height/10);
+		body.drawImage(mainAssets[1],playerPositionX[1],playerPositionY[1],canvas.width/20,canvas.height/10);
 			
 		
 		// Add Enemies	
 		for(loop = 0; loop < enemyType.length; loop+=1) {
 			if (enemyType[loop] == 2 || enemyType[loop] == 3) {
 				body.beginPath();
-				body.drawImage(otherAssets[enemyType[loop]],enemyPositionX[loop],enemyPositionY[loop],canvas.width/20,canvas.height/10);
+				body.drawImage(mainAssets[enemyType[loop]],enemyPositionX[loop],enemyPositionY[loop],canvas.width/20,canvas.height/10);
 			}
 		}
 		
@@ -597,7 +624,11 @@ function render() {
 }
 
 
-// ----------------------------------------------------------------------------------------------------------------------------------------------------------------	6
+
+
+// 6	----------------------------------------------------------------------------------------------------------------------------------------------------------------	6
+
+
 
 
 // wallArrowTouch Functions
@@ -696,3 +727,4 @@ window.addEventListener("touchend", function wallArrowTouchEnd(event) {
 		breaker = 1;
 	}
 });
+
