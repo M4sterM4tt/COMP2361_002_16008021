@@ -138,7 +138,7 @@ window.onload = function() {
 	touch = 0;
 	time = 0;
 	rating = 5;
-	ratingSwitch = [25,20,15,10];
+	ratingSwitch = [15,12,10,8];
 	renderTime = 1;
 	
 	
