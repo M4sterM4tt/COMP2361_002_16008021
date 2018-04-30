@@ -7,6 +7,9 @@
 // Assignment Title: COMP2361 Mobile Application Development.
 
 
+// https://cordova.apache.org/docs/en/latest/ (Cordova.apache.org, 2018)
+
+
 
 
 // Canvas Variables 
@@ -30,39 +33,39 @@ var playerAccelerationY; // Variable which holds Y Acceleration of Player.
 
 
 // Enemy Variables
-var enemyType;
-var enemyPositionX;
-var enemyPositionY;
-var enemyVelocityX;
-var enemyVelocityY;
-var enemyAccelerationX;
-var enemyAccelerationY;
+var enemyType; // Array which holds the Enemy Type.
+var enemyPositionX; // Array which holds X Position of Enemy.
+var enemyPositionY; // Array which holds Y Position of Enemy.
+var enemyVelocityX; // Variable which holds X Velocity of Enemy.
+var enemyVelocityY; // Variable which holds Y Velocity of Enemy.
+var enemyAccelerationX; // Variable which holds X Acceleration of Enemy.
+var enemyAccelerationY; // Variable which holds Y Acceleration of Enemy.
 
 
 // Wall Variables
-var wallType;
-var wallDefaultType;
-var wallPositionX;
-var wallPositionY;
-var wallVelocityX;
-var wallVelocityY;
-var wallAccelerationX;
-var wallAccelerationY;
-var wallAccelerationZ;
+var wallType; // Array which holds the Wall Type.
+var wallDefaultType; // Array which holds the Default Wall Type.
+var wallPositionX; // Array which holds X Position of Wall.
+var wallPositionY; // Array which holds Y Position of Wall.
+var wallVelocityX; // Variable which holds X Velocity of Wall.
+var wallVelocityY; // Variable which holds Y Velocity of Wall.
+var wallAccelerationX; // Variable which holds X Acceleration of Wall.
+var wallAccelerationY; // Variable which holds Y Acceleration of Wall.
+var wallAccelerationZ; // Variable which holds Z Acceleration of Wall.
 
 
 // Loop Variables
-var loop;
-var loopTwo;
-var loopThree;
-var loopFour;
+var loop; // Variable for loops
+var loopTwo; // A back up Variable for loops
+var loopThree; // A back up Variable for loops
+var loopFour; // A back up Variable for loops
 
 
 // Other Variables
-var pause;
-var limit;
-var limitTwo;
-var previous;
+var pause; // Variable which pauses the game.
+var limit; // Variable which limits actions.
+var limitTwo; // A back up Variable which limits actions.
+var previous; // Variable which stores .
 var previousTwo;
 var switcher;
 var breaker;
@@ -168,7 +171,7 @@ window.onload = function() {
 	// CODE from SWEETALERT. "Sweetalert". T4t5.github.io. N.p., 2017. Web. 09 Apr. 2018.
 	swal({
 		title: "How to Play", // Title of Alert Box.
-		text: "Tilt your phone to control the Red Ball. Guide the Red Ball to the Yellow Goal. Avoid the Blue Holes mainwise you end up where you started. Beware of the Purple Ball who is just as Evil. Tilt, Touch and Shake your Phone to Control the special type of Walls allowing you to change the maze to benefit you. Good Luck!", // Main Text of Alert Box.
+		text: "Tilt your phone to control the Red Ball. Guide the Red Ball to the Yellow Goal. Avoid the Blue Holes otherwise you end up where you started. Beware of the Purple Ball who is just as Evil. Tilt, Touch and Shake your Phone to Control the special type of Walls allowing you to change the maze to benefit you. Good Luck!", // Main Text of Alert Box.
 		confirmButtonColor: "#0b8e42", // Colour of Confirm Button.
 		confirmButtonText: "Start Game", // Text within Confirm Button
 		closeOnConfirm: true // The Alert disappears when the confirm button is pressed.
@@ -441,7 +444,7 @@ function render() {
 			swal({
 				title: "YOU WIN", // Title of Alert Box.
 				text: "Your Time was " + time.toFixed(2) + ". Overall Rating: " + rating + "/5", // Main Text of Alert Box.
-				confirmButtonColor: "#0b8e42", // Colour of Confirm Button.
+				confirmButtonColor: "#0b8e42", // Color of Confirm Button.
 				confirmButtonText: "Restart Game", // Text within Confirm Button
 				closeOnConfirm: false // The Alert disappears when the confirm button is pressed.
 			},
@@ -630,9 +633,9 @@ function render() {
 // 6	----------------------------------------------------------------------------------------------------------------------------------------------------------------	6
 
 
+// The Remaining Code has been Modified from http://bencentra.com/code/2014/12/05/html5-canvas-touch-events.html (Ben Centra, 2018)
 
-
-// wallArrowTouch Functions
+// wallArrowTouch Functions 
 window.addEventListener("touchstart", function wallArrowTouchStart(event) {
 	if (pause == false) {
 		touch = event.touches[0];
